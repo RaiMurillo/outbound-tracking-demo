@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outbound Automation Demo — Book a Call</title>
+
+<!-- ============================================= -->
+<!-- Google Tag Manager                             -->
+<!-- Replace GTM-XXXXXXX with your real container ID -->
+<!-- ============================================= -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NCB9P42M');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F4EF;--ink:#1C2127;--line:#DAD5C8;--accent:#2F6B4F;--muted:#6B675D;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+
+  header{padding:24px 0;border-bottom:1px solid var(--line);}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-family:'Fraunces',serif;font-weight:500;font-size:18px;}
+
+  .hero{padding:80px 0 60px;text-align:center;}
+  .hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:38px;line-height:1.2;margin:0 0 16px;}
+  .hero p{color:var(--muted);max-width:46ch;margin:0 auto 32px;}
+
+  .btn{
+    display:inline-block;background:var(--ink);color:var(--paper);
+    padding:14px 28px;border-radius:4px;text-decoration:none;font-weight:600;
+    font-size:15px;border:none;cursor:pointer;
+  }
+  .btn:hover{background:var(--accent);}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line);}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:26px;margin:0 0 16px;}
+  .feature{margin-bottom:24px;}
+  .feature h3{font-size:16px;margin:0 0 6px;}
+  .feature p{color:var(--muted);margin:0;font-size:14.5px;}
+
+  form{display:flex;flex-direction:column;gap:14px;max-width:420px;margin-top:20px;}
+  input,textarea{
+    padding:12px 14px;border:1px solid var(--line);border-radius:4px;
+    font-family:'Inter',sans-serif;font-size:14.5px;background:#fff;
+  }
+  textarea{min-height:90px;resize:vertical;}
+
+  .thankyou{
+    display:none;background:#EAF3EC;border:1px solid var(--accent);
+    padding:14px 16px;border-radius:4px;color:var(--accent);font-size:14.5px;margin-top:14px;
+  }
+
+  footer{padding:36px 0;text-align:center;color:var(--muted);font-size:13.5px;}
+  footer a{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCB9P42M"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header>
+  <div class="wrap">
+    <div class="logo">Outbound OS</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Automate your outbound pipeline without hiring a team.</h1>
+    <p>A demo landing page used to practice real Google Tag Manager and GA4 event tracking — button clicks, scroll depth, outbound links, and lead form submissions.</p>
+
+    <!-- TRACKABLE ELEMENT 1: CTA click -->
+    <!-- GTM trigger: Click - All Elements, Click ID equals "cta-button" -->
+    <button id="cta-button" class="btn" onclick="scrollToForm()">Book a Demo</button>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What it does</h2>
+    <div class="feature">
+      <h3>Automated lead scoring</h3>
+      <p>Every inbound contact is scored against your ICP the moment it lands, so your team only spends time on qualified leads.</p>
+    </div>
+    <div class="feature">
+      <h3>Personalized outreach at scale</h3>
+      <p>AI-generated research and opening lines for every contact — no templated mail-merge feel.</p>
+    </div>
+    <div class="feature">
+      <h3>One dashboard for the whole funnel</h3>
+      <p>Track every stage from sourced to booked, without stitching together five different tools.</p>
+    </div>
+
+    <!-- TRACKABLE ELEMENT 2: Outbound click -->
+    <!-- GTM trigger: Click - Just Links, Click URL does not contain this site's hostname -->
+    <p style="margin-top:28px;">Curious how the backend works? <a href="https://github.com/RaiMurillo/leadflow-ai-outbound-system" target="_blank">See the technical build on GitHub →</a></p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p style="color:var(--muted);">Fill this out and we'll follow up within a day.</p>
+
+    <!-- TRACKABLE ELEMENT 3: Form submission -->
+    <!-- Pushes a custom dataLayer event "generate_lead" on submit -->
+    <!-- GTM trigger: Custom Event, Event name equals "generate_lead" -->
+    <form id="contact-form" onsubmit="handleSubmit(event)">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Work email" required>
+      <textarea name="message" placeholder="What are you hoping to automate?"></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
+    <div class="thankyou" id="thankyou">Thanks — we'll be in touch shortly.</div>
+  </div>
+</section>
+
+<!-- Filler content so the page is tall enough to test the Scroll Depth trigger -->
+<section>
+  <div class="wrap">
+    <h2>Why teams switch</h2>
+    <div class="feature"><h3>No more spreadsheet CRMs</h3><p>Everything lives in one system, updated automatically as leads move through the funnel.</p></div>
+    <div class="feature"><h3>Faster time to first meeting</h3><p>Qualification and personalization happen in minutes, not days.</p></div>
+    <div class="feature"><h3>Built for lean teams</h3><p>No dedicated ops hire required to keep the pipeline running.</p></div>
+    <div class="feature"><h3>Transparent reporting</h3><p>See exactly where leads drop off at every stage of the funnel.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Demo landing page built to practice GTM &amp; GA4 event tracking configuration.</div>
+</footer>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function scrollToForm(){
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  }
+
+  function handleSubmit(e){
+    e.preventDefault();
+    // Push a custom event to the dataLayer for GTM to listen for
+    window.dataLayer.push({
+      'event': 'generate_lead',
+      'form_name': 'contact_form'
+    });
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('thankyou').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
